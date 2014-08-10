@@ -6,6 +6,7 @@ Generates a thumbnail to an image and renders an image tag.
 
 ```
 {% thumbnail /path/to/local/image.png 50x50< %}
+{% thumbnail my_path_variable 50x50< %}
 ```
 
 The dimensions will be given directly to imagemagick.

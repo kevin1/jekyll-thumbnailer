@@ -1,23 +1,5 @@
 # Generates a thumbnail to an image and renders an image tag.
-# The image will be resized to fit within a max bounding box.
-# The resulting filename is based on original and includes dimensions.
-# All paths are relative to /source.
-#
-# If you are running under octopress in preview mode, we generate images that scale the original
-# if a new thumbnail is needed. This prevents the server from descending into an
-# infinite thumbnail and detection loop.
-# 
-# Usage:
-# 
-# {% thumbnail /path/to/local/image.png 50x50< %}
-#
-# The dimensions will be given directly to imagemagick.
-# You probably want the "<" at the end. See http://www.imagemagick.org/Magick++/Geometry.html.
-#
-# Installation:
-# 
-# * add the gem: gem "mini_magick" (and bundle install)
-# * copy thumbnail.rb to plugins folder
+
 require 'mini_magick'
 
 class Jekyll::Thumbnail < Liquid::Tag

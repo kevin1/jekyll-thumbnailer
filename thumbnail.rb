@@ -3,6 +3,18 @@
 require 'mini_magick'
 
 class Jekyll::Thumbnail < Liquid::Tag
+  # look up liquid variables
+  # source: http://stackoverflow.com/a/8771374/1489823
+  def look_up(context, name)
+    lookup = context
+
+    name.split(".").each do |value|
+      lookup = lookup[value]
+    end
+
+    lookup
+  end
+  
   def initialize(tag_name, markup, tokens)
     if /(?<source>[^\s]+)\s+(?<dimensions>[^\s]+)/i =~ markup
       @source = source
@@ -15,7 +27,9 @@ class Jekyll::Thumbnail < Liquid::Tag
     if @source
 
       # parking
+      # also put the parameters into the liquid parser again, to allow variable paths
       source = @source
+      source = look_up context, source unless File.readable?(source)
       dimensions = @dimensions
 
       source_path = "./source#{source}"
